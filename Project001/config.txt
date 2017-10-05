@@ -1,0 +1,10 @@
+AnimationType=ANIMACION1
+SensorType=KINECT
+CameraName=ABC
+Fears=asd,dfh
+Strengths=qwe,xcv
+ProjectorResolution=920x760
+ProjectorName=Epson
+FontName=Agency FB
+FontSize=14
+DisalignConversionFactor=5.5

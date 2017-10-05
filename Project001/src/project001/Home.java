@@ -1,5 +1,6 @@
 package project001;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -9,6 +10,17 @@ import javax.print.*;
 
 import java.awt.Dimension;
 import java.awt.DisplayMode;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+//import java.nio.charset.Charset;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import javax.swing.JOptionPane;
 
@@ -219,12 +231,9 @@ public class Home extends javax.swing.JFrame {
         getSettingsConfig().setFontSize(cBoxFontSize.getSelectedItem().toString());
 
 //        System.out.println(getSettingsConfig());
-//
-//
 
 
-
-        System.out.println("" + System.getProperty("os.name"));
+//        System.out.println("" + System.getProperty("os.name"));
 
 
         /*
@@ -238,12 +247,12 @@ public class Home extends javax.swing.JFrame {
         }
          */
         
-        PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
-        System.out.println("Number of print services: " + printServices.length);
-
-        for (PrintService printer : printServices) {
-            System.out.println("Printer: " + printer.getName());
-        }
+//        PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
+//        System.out.println("Number of print services: " + printServices.length);
+//
+//        for (PrintService printer : printServices) {
+//            System.out.println("Printer: " + printer.getName());
+//        }
         
         
 
@@ -283,12 +292,37 @@ public class Home extends javax.swing.JFrame {
             getSettingsConfig().setFears(fears);
             getSettingsConfig().setStrengths(strengths);
             
-            System.out.println(getSettingsConfig().getFears());
-            System.out.println(getSettingsConfig().getStrengths());
+            printTxt();
+            
+//            System.out.println(getSettingsConfig().getFears());
+//            System.out.println(getSettingsConfig().getStrengths());
         }
         
     }//GEN-LAST:event_btnFinishActionPerformed
+    
 
+    private void printTxt(){
+        PrintWriter outPutStream;
+        try {
+            outPutStream = new PrintWriter("config.txt");
+            outPutStream.println("AnimationType=ANIMACION1");
+            outPutStream.println("SensorType="+ getSettingsConfig().getSensorType());
+            outPutStream.println("CameraName=ABC");
+            outPutStream.println("Fears="+ getSettingsConfig().getFears());
+            outPutStream.println("Strengths="+ getSettingsConfig().getStrengths());
+            outPutStream.println("ProjectorResolution="+ getSettingsConfig().getProjectorResolution());
+            outPutStream.println("ProjectorName="+ getSettingsConfig().getProjectorName());
+            outPutStream.println("FontName="+ getSettingsConfig().getFontName());
+            outPutStream.println("FontSize="+getSettingsConfig().getFontSize());
+            outPutStream.println("DisalignConversionFactor=5.5");
+            outPutStream.close();
+            System.out.println("Done");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Project001.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     private void btnAddStrengthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStrengthActionPerformed
         
         listStrengths.addItem(txtStregth.getText());
